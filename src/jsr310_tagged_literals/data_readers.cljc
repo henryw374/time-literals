@@ -4,7 +4,7 @@
 ;(def ^{:dynamic true :private true} *cljs* false)
 
 (defn set-clojure-mode! []
-  #?(:clj (System/setProperty "jsr310-tagged-literals.clojurescript" "false"))
+  #?(:clj (System/setProperty "jsr310-tagged-literals.clojurescript" "false")))
 
 (defn set-cljs-mode! []
   #?(:clj (System/setProperty "jsr310-tagged-literals.clojurescript" "true")))
