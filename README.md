@@ -20,7 +20,7 @@ If you only need `Instant` from jsr-310, you could just rebind the tag readers a
 Lein/Boot 
 
 ```
-[jsr310-tagged-literals "0.1.0-SNAPSHOT"]
+[jsr310-tagged-literals "0.1.0"]
 ```
 
 I'll go through a few use cases and if you have different ones, hopefully
