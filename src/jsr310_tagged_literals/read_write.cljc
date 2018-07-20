@@ -1,9 +1,12 @@
-(ns jsr310-tagged-literals.printers
-  #?(:cljs
-     (:require [cljsjs.js-joda])
-     :clj
-     (:import (java.io Writer)
-              [java.time Instant LocalDate LocalTime Duration])))
+(ns jsr310-tagged-literals.read-write
+  #?@
+  (:cljs
+    [(:require
+       [cljsjs.js-joda]
+       [cljs.reader :as reader])]
+    :clj
+    [(:import (java.io Writer)
+       [java.time Instant LocalDate LocalTime Duration])]))
 
 (defn- print-to-string [t o]
   (str "#jsr310/" t " \"" (str o) "\""))
@@ -34,12 +37,11 @@
      (def TemporalAdjusters (.. js/JSJoda -TemporalAdjusters))
      (def Temporal (.. js/JSJoda -Temporal))
      (def TemporalAmount (.. js/JSJoda -TemporalAmount))
-     (def DateTimeFormatter (.. js/JSJoda -DateTimeFormatter))
-     (def ResolverStyle (.. js/JSJoda -ResolverStyle))
 
      ;; Following are not yet implemented in js-joda https://github.com/js-joda/js-joda/issues/165
      (def OffsetDateTime (.. js/JSJoda -ZonedDateTime))
      (def OffsetTime (.. js/JSJoda -LocalTime))
+
      ))
 
 #?(:cljs
@@ -73,3 +75,15 @@
 #?(:clj
    (defmethod print-method Duration [c ^Writer w]
      (.write w (print-duration c))))
+
+(def tags {'jsr310/date (fn [t] (. LocalDate parse t))
+           'jsr310/instant (fn [t] (. Instant parse t))
+           'jsr310/time (fn [t] (. LocalTime parse t))
+           'jsr310/duration (fn [t] (. Duration parse t))})
+
+#?(:cljs
+   (do
+     (doseq [[tag read-fn] tags]
+       (reader/register-tag-parser! tag read-fn))))
+
+

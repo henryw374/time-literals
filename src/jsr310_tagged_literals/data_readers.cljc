@@ -1,18 +1,18 @@
-(ns jsr310-tagged-literals.core
+(ns jsr310-tagged-literals.data-readers
   (:refer-clojure :exclude [time]))
 
 ;(def ^{:dynamic true :private true} *cljs* false)
 
-#_(defn set-clojure-mode! []
-  #?(:clj (alter-var-root #'*cljs* (constantly false))
+(defn set-clojure-mode! []
+  #?(:clj (System/setProperty "jsr310-tagged-literals.clojurescript" "false")
      :cljs (set! *cljs* false)))
 
-#_(defn set-cljs-mode! []
-  #?(:clj (alter-var-root #'*cljs* (constantly true))
+(defn set-cljs-mode! []
+  #?(:clj (System/setProperty "jsr310-tagged-literals.clojurescript" "true")
      :cljs (set! *cljs* true)))
 
 (defn clojurescript? []
-  #?(:clj (boolean (System/getProperty "jsr310-tagged-literals.clojurescript"))
+  #?(:clj (= "true" (System/getProperty "jsr310-tagged-literals.clojurescript"))
      :cljs true))
 
 (defn date [x]
