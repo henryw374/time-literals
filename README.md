@@ -17,6 +17,12 @@ If you only need `Instant` from jsr-310, you could just rebind the tag readers a
 
 ## Usage
 
+Lein/Boot 
+
+```
+[jsr310-tagged-literals "0.1.0-SNAPSHOT"]
+```
+
 I'll go through a few use cases and if you have different ones, hopefully
 you can work it out and submit a PR ;-).
 

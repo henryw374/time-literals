@@ -1,4 +1,4 @@
-(defproject jsr310-tagged-literals "0.1.0-SNAPSHOT"
+(defproject jsr310-tagged-literals "0.1.0"
   :description "Clojure(Script) tagged literals for jsr-310 entities"
   :url "https://github.com/henryw374/jsr310-tagged-literals"
   :license {:name "Eclipse Public License"
