@@ -10,10 +10,11 @@ which on the jvm is implemented in the java.time library and in Javascript as th
 ## Alternatives
  
 If you only need `Instant` from jsr-310, you could just rebind the tag readers and printer fns for `#inst`
- 
-## TODO
- 
- Support complete set of jsr-310 objects.
+
+Also [java-time-literals](https://github.com/magnars/java-time-literals) is a library which is similar but currently only works
+on the jvm, and also doesn't provide a way to read edn with the literals (via clojure.edn/read-string or cljs.reader). Also the naming of tags
+in this library follows the [tick](https://clojars.org/tick/versions/0.4.0-alpha) (v 0.4+) convention, for example
+`#jsr310/date` for LocalDate, instead of `#time/ld`.
 
 ## Usage
 
@@ -22,9 +23,6 @@ Lein/Boot
 ```
 [jsr310-tagged-literals "0.1.1"]
 ```
-
-I'll go through a few use cases and if you have different ones, hopefully
-you can work it out and submit a PR ;-).
 
 The library includes the magic file `data_readers.cljc` which Clojure and the Clojurescript
 compiler will look for.
@@ -35,8 +33,6 @@ For example, in a Clojure repl:
 
 ```
 (require 'jsr310-tagged-literals.data-readers)
-; The following sets the system property for cljs
-(jsr310-tagged-literals.data-readers/set-cljs-mode!)
  
 ; Get a node repl going, or equivalent start figwheel and connect with sidecar etc 
 (require '[cljs.repl :as cljs-repl])
@@ -62,34 +58,6 @@ For example, in a Clojure repl:
  (cljs.reader/read-string "#jsr310/date \"2011-01-01\"")     
 
 ```
-
-#### Compiling Cljs files containing jsr-310 tagged literals
-
-When compiling cljs, the `jsr310-tagged-literals.clojurescript` system property needs to be
-`true`. Programmatically this can be done via `(jsr310-tagged-literals.data-readers/set-cljs-mode!)`
-
-But, let's say you're compiling cljs with leiningen and cljsbuild ...
-
-Have a profile that sets the system property
-```
-...
-:profiles {:cljs {:jvm-opts ["-Djsr310-tagged-literals.clojurescript=true"]}
-...
-```
-and then from cmd line
-```
-lein with-profile cljs cljsbuild once
-```
-
-Lein uberjar with both aot and cljs compiling can be done similarly. Invoke any cljs-building
-steps in a profile that has the aforesaid property set to true, and any clojure building steps in 
-a profile with it set to false
-
-```
-:prep-tasks ["build-clj" "build-cljs"]
-:aliases { "build-cljs" ["with-profile" "cljs" "cljsbuild" "once"]
-           "build-clj"  ["with-profile" "clj" "compile"] }
-``` 
 
 #### Self-hosted Cljs
 
