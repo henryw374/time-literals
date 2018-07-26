@@ -14,6 +14,8 @@
                                Year
                                YearMonth]]))
 
+
+
 (extend-protocol IComparable
   Period          (-compare [x y] (.compareTo x y))
   LocalDate       (-compare [x y] (.compareTo x y))

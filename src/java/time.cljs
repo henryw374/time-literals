@@ -14,6 +14,8 @@
 (def ZoneId (.. js/JSJoda -ZoneId))
 (def DayOfWeek (.. js/JSJoda -DayOfWeek))
 (def Month (.. js/JSJoda -Month))
+
+(set! (.-valueOf Month) (fn [x] (goog.object.get Month x)))
 ;; Following are not yet implemented in js-joda https://github.com/js-joda/js-joda/issues/165
 (def OffsetDateTime (.. js/JSJoda -ZonedDateTime))
 (def OffsetTime (.. js/JSJoda -LocalTime))
