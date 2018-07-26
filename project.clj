@@ -3,12 +3,10 @@
   :url "https://github.com/henryw374/jsr310-tagged-literals"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.9.0"]
-                 [cljsjs/js-joda "1.6.2-0"]]
+  :dependencies [[cljs.java-time "0.1.0"]]
   :profiles {:dev
             {:source-paths ["dev"]
              :dependencies [[org.clojure/clojure "1.9.0"]
                             [org.clojure/clojurescript "1.10.238"]
-                            [cljsjs/js-joda-timezone "1.3.0-0"]
-                            ]
+                            [cljsjs/js-joda-timezone "1.3.0-0"]]
              :plugins [[lein-doo "0.1.10"]]}})
