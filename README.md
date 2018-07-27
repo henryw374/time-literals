@@ -27,6 +27,24 @@ Lein/Boot
 The library includes the magic file `data_readers.cljc` which Clojure and the Clojurescript
 compiler will look for.
 
+Example literals:
+
+```
+#jsr310/month "JUNE"
+#jsr310/period "P1D"
+#jsr310/date "2039-01-01"
+#jsr310/date-time "2018-07-25T08:08:44.026"
+#jsr310/zoned-date-time "2018-07-25T08:09:11.227+01:00[Europe/London]"
+#jsr310/offset-date-time "2018-07-25T08:11:54.453+01:00"
+#jsr310/instant "2018-07-25T07:10:05.861Z"
+#jsr310/time "08:12:13.366"
+#jsr310/duration "PT1S"
+#jsr310/year "3030"
+#jsr310/year-month "3030-01"
+#jsr310/zone "Europe/London"
+#jsr310/day-of-week "TUESDAY"
+```
+
 ### ClojureScript
 
 For example, in a Clojure repl:
@@ -44,8 +62,8 @@ For example, in a Clojure repl:
    :cache-analysis true
    :source-map true})
   
- ;Now, in cljs repl, assuming you have tick or just cljsjs.js-joda in your classpath  
- (require '[cljsjs.js-joda])  
+ ;Now, in cljs repl
+ (require '[java.time ])  
  (println #jsr310/duration "PT1S")
  ; => #object[Duration PT1S]
  ; Now, include printing and edn reading
