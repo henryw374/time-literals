@@ -1,11 +1,12 @@
 # jsr310-tagged-literals
 
 A Clojure(Script) library to help reading and printing objects from jsr-310,
-which on the jvm is implemented in the java.time library and in Javascript as the 
+which on the jvm (bundled with Java 8+ only) is implemented in the java.time library and in Javascript as the 
  '[JSJoda](https://clojars.org/cljsjs/js-joda)' library (which is actually an implementation of JSR-310,
  rather than joda-time, as it's name would suggest).
  
- For Clojurists using jsr-310, take a look at the cross-platform [tick](https://clojars.org/tick/versions/0.4.0-alpha) (v 0.4+) library
+If you're not using it already The [tick](https://clojars.org/tick) library is
+ an intuitive Clojure(Script) library for dealing with time, intended as a replacement for clj-time
  
 ## Alternatives
  
