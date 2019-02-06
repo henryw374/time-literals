@@ -21,9 +21,7 @@ in this library follows the [tick](https://clojars.org/tick/versions/0.4.0-alpha
 
 Lein/Boot 
 
-```
-[time-literals "0.1.1"]
-```
+[![Clojars Project](https://img.shields.io/clojars/v/time-literals.svg)](https://clojars.org/time-literals)
 
 The library includes the magic file `data_readers.cljc` which Clojure and the Clojurescript
 compiler will look for.

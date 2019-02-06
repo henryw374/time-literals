@@ -1,4 +1,4 @@
-(defproject time-literals "0.1.4"
+(defproject time-literals "0.1.0"
   :description "Clojure(Script) tagged literals for jsr-310 entities"
   :url "https://github.com/henryw374/time-literals"
   :license {:name "Eclipse Public License"
