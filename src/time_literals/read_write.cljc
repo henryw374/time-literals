@@ -1,4 +1,4 @@
-(ns jsr310-tagged-literals.read-write
+(ns time-literals.read-write
   #?@
   (:cljs
     [(:require
@@ -35,7 +35,7 @@
                   YearMonth])]))
 
 (defn- print-to-string [t o]
-  (str "#jsr310/" t " \"" (str o) "\""))
+  (str "#time/" t " \"" (str o) "\""))
 
 (def print-period (partial print-to-string "period"))
 (def print-date (partial print-to-string "date"))
@@ -100,20 +100,20 @@
 #?(:clj    (defmethod print-dup Year [c ^Writer w]      (.write w (print-year c))))
 #?(:clj    (defmethod print-dup YearMonth [c ^Writer w]      (.write w (print-year-month c))))
 
-(def tags {'jsr310/period (fn [t] (. Period parse t))
-           'jsr310/date (fn [t] (. LocalDate parse t))
-           'jsr310/date-time (fn [t] (. LocalDateTime parse t))
-           'jsr310/zoned-date-time (fn [t] (. ZonedDateTime parse t))
-           'jsr310/offset-time (fn [t] (. OffsetTime parse t))
-           'jsr310/instant (fn [t] (. Instant parse t))
-           'jsr310/offset-date-time (fn [t] (. OffsetDateTime parse t))
-           'jsr310/time (fn [t] (. LocalTime parse t))
-           'jsr310/duration (fn [t] (. Duration parse t))
-           'jsr310/year (fn [t] (. Year parse t))
-           'jsr310/year-month (fn [t] (. YearMonth parse t))
-           'jsr310/zone (fn [t] (. ZoneId of t))
-           'jsr310/day-of-week (fn [t] (. DayOfWeek valueOf t))
-           'jsr310/month (fn [t] (. Month valueOf t))
+(def tags {'time/period (fn [t] (. Period parse t))
+           'time/date (fn [t] (. LocalDate parse t))
+           'time/date-time (fn [t] (. LocalDateTime parse t))
+           'time/zoned-date-time (fn [t] (. ZonedDateTime parse t))
+           'time/offset-time (fn [t] (. OffsetTime parse t))
+           'time/instant (fn [t] (. Instant parse t))
+           'time/offset-date-time (fn [t] (. OffsetDateTime parse t))
+           'time/time (fn [t] (. LocalTime parse t))
+           'time/duration (fn [t] (. Duration parse t))
+           'time/year (fn [t] (. Year parse t))
+           'time/year-month (fn [t] (. YearMonth parse t))
+           'time/zone (fn [t] (. ZoneId of t))
+           'time/day-of-week (fn [t] (. DayOfWeek valueOf t))
+           'time/month (fn [t] (. Month valueOf t))
            })
 
 #?(:cljs

@@ -1,16 +1,16 @@
 {
-jsr310/period jsr310-tagged-literals.data-readers/period
-jsr310/date jsr310-tagged-literals.data-readers/date
-jsr310/date-time jsr310-tagged-literals.data-readers/date-time
-jsr310/zoned-date-time jsr310-tagged-literals.data-readers/zoned-date-time
-jsr310/offset-time jsr310-tagged-literals.data-readers/offset-time
-jsr310/instant jsr310-tagged-literals.data-readers/instant
-jsr310/offset-date-time jsr310-tagged-literals.data-readers/offset-date-time
-jsr310/zone jsr310-tagged-literals.data-readers/zone
-jsr310/day-of-week jsr310-tagged-literals.data-readers/day-of-week
-jsr310/time jsr310-tagged-literals.data-readers/time
-jsr310/month jsr310-tagged-literals.data-readers/month
-jsr310/duration jsr310-tagged-literals.data-readers/duration
-jsr310/year jsr310-tagged-literals.data-readers/year
-jsr310/year-month jsr310-tagged-literals.data-readers/year-month
+time/period time-literals.data-readers/period
+time/date time-literals.data-readers/date
+time/date-time time-literals.data-readers/date-time
+time/zoned-date-time time-literals.data-readers/zoned-date-time
+time/offset-time time-literals.data-readers/offset-time
+time/instant time-literals.data-readers/instant
+time/offset-date-time time-literals.data-readers/offset-date-time
+time/zone time-literals.data-readers/zone
+time/day-of-week time-literals.data-readers/day-of-week
+time/time time-literals.data-readers/time
+time/month time-literals.data-readers/month
+time/duration time-literals.data-readers/duration
+time/year time-literals.data-readers/year
+time/year-month time-literals.data-readers/year-month
  }

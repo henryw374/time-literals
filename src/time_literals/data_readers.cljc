@@ -1,4 +1,4 @@
-(ns jsr310-tagged-literals.data-readers
+(ns time-literals.data-readers
   (:refer-clojure :exclude [time]))
 
 (defn date [x]
