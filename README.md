@@ -7,15 +7,6 @@ which on the jvm (bundled with Java 8+ only) is objects from the `java.time` lib
  
 If you're not using it already The [tick](https://clojars.org/tick) library is
  an intuitive Clojure(Script) library for dealing with time, intended as a replacement for clj-time
- 
-## Alternatives
- 
-If you only need `Instant` from jsr-310, you could just rebind the tag readers and printer fns for `#inst`
-
-Also [java-time-literals](https://github.com/magnars/java-time-literals) is a library which is similar but currently only works
-on the jvm, and also doesn't provide a way to read edn with the literals (via clojure.edn/read-string or cljs.reader). Also the naming of tags
-in this library follows the [tick](https://clojars.org/tick/versions/0.4.0-alpha) (v 0.4+) convention, for example
-`#time/date` for LocalDate, instead of `#time/ld`.
 
 ## Usage
 
@@ -25,6 +16,11 @@ Lein/Boot
 
 The library includes the magic file `data_readers.cljc` which Clojure and the Clojurescript
 compiler will look for.
+
+In order to modify the printer to print these literals, run: 
+
+`(time-literals.read-write/print-time-literals-clj!)`
+`(time-literals.read-write/print-time-literals-cljs!)`
 
 Example literals:
 
@@ -62,11 +58,12 @@ For example, in a Clojure repl:
    :source-map true})
   
  ;Now, in cljs repl
- (require '[java.time ])  
+ (require '[java.time])  
  (println #time/duration "PT1S")
  ; => #object[Duration PT1S]
  ; Now, include printing and edn reading
  (require '[time-literals.read-write])
+ (time-literals.read-write/print-time-literals-cljs!)
  (println #time/duration "PT1S")
  ; => #time/duration "PT1S"   
       
@@ -95,6 +92,7 @@ As with any non-core tagged literal, the tag reader functions referred to from a
  
  ```
  (require '[time-literals.read-write])
+ (time-literals.read-write/print-time-literals-clj!)
  ```
 
 Printing will now automatically change, for example re run the println above
@@ -106,6 +104,15 @@ Read edn like this:
 ```
 
 Using clojure.core/read-string, you'd need to `eval` after the call to read-string
+
+## Alternatives
+ 
+If you only need `Instant` from java.time/jsr-310, you could just rebind the tag readers and printer fns for `#inst`
+
+Also [java-time-literals](https://github.com/magnars/java-time-literals) is a library which is similar but currently only works
+on the jvm, and also doesn't provide a way to read edn with the literals (via clojure.edn/read-string or cljs.reader). Also the naming of tags
+in this library follows the [tick](https://clojars.org/tick/versions/0.4.0-alpha) (v 0.4+) convention, for example
+`#time/date` for LocalDate, instead of `#time/ld`.
 
 ## License
 
