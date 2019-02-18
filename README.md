@@ -1,12 +1,15 @@
 # time-literals
 
-A Clojure(Script) library to help reading and printing objects from jsr-310 domain,
-which on the jvm (bundled with Java 8+ only) is objects from the `java.time` library and in Javascript is a 
+A Clojure(Script) library which provides tagged literals for objects from jsr-310 domain,
+which on the jvm is objects from the `java.time` library and in Javascript is a 
  '[jsr-310 clone](https://clojars.org/cljsjs/js-joda)' library (yes, it is actually an implementation of JSR-310,
  rather than joda-time, as it's name would suggest).
  
-If you're not using it already The [tick](https://clojars.org/tick) library is
- an intuitive Clojure(Script) library for dealing with time, intended as a replacement for clj-time
+This enables copying and pasting these objects within the REPL and conveying these objects across process boundaries. 
+ 
+Pro-tip: The [tick](https://clojars.org/tick) library is
+ an intuitive Clojure(Script) library for dealing with time, intended as a replacement for clj-time. It bundles this library and enables `time-literals` printing
+  by default.
 
 ## Usage
 
@@ -20,6 +23,7 @@ compiler will look for.
 In order to modify the printer to print these literals, run: 
 
 `(time-literals.read-write/print-time-literals-clj!)`
+
 `(time-literals.read-write/print-time-literals-cljs!)`
 
 Example literals:
@@ -83,7 +87,8 @@ As with any non-core tagged literal, the tag reader functions referred to from a
  must be loaded before the forms can be read.
 
 ```
-(require '[time-literals.data-readers])
+(require '[time-literals.read-write])
+(time-literals.read-write/print-time-literals-clj!)
 (println #time/duration "PT1S")
 
 ```
@@ -109,10 +114,10 @@ Using clojure.core/read-string, you'd need to `eval` after the call to read-stri
  
 If you only need `Instant` from java.time/jsr-310, you could just rebind the tag readers and printer fns for `#inst`
 
-Also [java-time-literals](https://github.com/magnars/java-time-literals) is a library which is similar but currently only works
-on the jvm, and also doesn't provide a way to read edn with the literals (via clojure.edn/read-string or cljs.reader). Also the naming of tags
-in this library follows the [tick](https://clojars.org/tick/versions/0.4.0-alpha) (v 0.4+) convention, for example
-`#time/date` for LocalDate, instead of `#time/ld`.
+There is a similar library, [java-time-literals](https://github.com/magnars/java-time-literals) but this currently only works
+on the jvm, and also doesn't provide a way to read edn with the literals (via clojure.edn/read-string or cljs.reader). The naming of tags
+in this library (`time-literals`) follows the [tick](https://clojars.org/tick) convention, for example
+`#time/date` for LocalDate, instead of `#time/ld` as in `java-time-literals`.
 
 ## License
 
