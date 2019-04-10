@@ -7,7 +7,7 @@ which on the jvm is objects from the `java.time` library and in Javascript is a
  
 This enables copying and pasting these objects within the REPL, conveying these objects across process boundaries & etc. 
  
-Pro-tip: The [tick](https://clojars.org/tick) library is
+The [tick](https://clojars.org/tick) library is
  an intuitive Clojure(Script) library for dealing with time, intended as a replacement for clj-time. It bundles this library and enables `time-literals` printing
   by default.
 
@@ -18,7 +18,7 @@ Lein/Boot
 [![Clojars Project](https://img.shields.io/clojars/v/time-literals.svg)](https://clojars.org/time-literals)
 
 The library includes the magic file `data_readers.cljc` which Clojure and the Clojurescript
-compiler will look for.
+compilers will look for.
 
 In order to modify the printer to print these literals, run: 
 
