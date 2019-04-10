@@ -5,7 +5,7 @@ which on the jvm is objects from the `java.time` library and in Javascript is a
  '[jsr-310 clone](https://clojars.org/cljsjs/js-joda)' library (yes, it is actually an implementation of JSR-310,
  rather than joda-time, as it's name would suggest).
  
-This enables copying and pasting these objects within the REPL and conveying these objects across process boundaries. 
+This enables copying and pasting these objects within the REPL, conveying these objects across process boundaries & etc. 
  
 Pro-tip: The [tick](https://clojars.org/tick) library is
  an intuitive Clojure(Script) library for dealing with time, intended as a replacement for clj-time. It bundles this library and enables `time-literals` printing
@@ -118,6 +118,21 @@ There is a similar library, [java-time-literals](https://github.com/magnars/java
 on the jvm, and also doesn't provide a way to read edn with the literals (via clojure.edn/read-string or cljs.reader). The naming of tags
 in this library (`time-literals`) follows the [tick](https://clojars.org/tick) convention, for example
 `#time/date` for LocalDate, instead of `#time/ld` as in `java-time-literals`.
+
+## Why use 'time' as namespace?
+
+TL;DR it is sufficiently ambiguous.
+
+This library reads/writes java.time objects. It would be feasible to use the same set of tags with a different 
+time library, either on the jvm or other elsewhere. If the namespace were 'jsr310' or 'java.time' that would be
+too implementaion specific.
+
+A set of literals for the ISO-8601 specification would 
+probably be the ideal for date interchange, with literals such as `#iso8601/ordinal-date"1981-095"``
+
+However, although the Java.time domain overlaps significantly with concepts in ISO-8601, there are differences.
+For example, the ISO 'Duration' is roughly a combination of java.time.Duration and java.time.Period, and 
+the IANA time zone names (such are you see in the literal representation of ZonedDateTime) are not part of ISO. 
 
 ## License
 
