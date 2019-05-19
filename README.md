@@ -16,9 +16,7 @@ java.time into a Clojure(Script) library
  
 The [tick](https://clojars.org/tick) library is an intuitive Clojure(Script) library for dealing with time, intended as a replacement for clj-time. It bundles this library and enables `time-literals` printing
   by default.
-  
-[time-literals](https://github.com/henryw374/time-literals) is a Clojure(Script) library which provides tagged literals for objects from jsr-310 domain and depends on this library
-  
+
 
 ## Usage
 
