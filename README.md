@@ -94,7 +94,8 @@ As with any non-core tagged literal, the tag reader functions referred to from a
  must be loaded before the forms can be read.
 
 ```
-(require '[time-literals.read-write])
+(require '[time-literals.data-readers]) ;; For literals
+(require '[time-literals.read-write]) ;; For printing/writing
 (time-literals.read-write/print-time-literals-clj!)
 (println #time/duration "PT1S")
 
