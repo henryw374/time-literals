@@ -144,7 +144,7 @@ the IANA time zone names (such are you see in the literal representation of Zone
 
 ## License
 
-Copyright © 2019 Widd Industries
+Copyright © 2019 [Widd Industries](http://widdindustries.com/about/)
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
