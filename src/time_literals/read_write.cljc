@@ -14,7 +14,8 @@
                             Month
                             Duration
                             Year
-                            YearMonth]]
+                            YearMonth
+                            MonthDay]]
          [cljs.reader :as reader])]
       :clj
       [
@@ -32,7 +33,8 @@
                            Month
                            Duration
                            Year
-                           YearMonth])]))
+                           YearMonth
+                           MonthDay])]))
 
 (defn- print-to-string [t o]
   (str "#time/" t " \"" (str o) "\""))
@@ -48,6 +50,7 @@
 (def print-day-of-week (partial print-to-string "day-of-week"))
 (def print-time (partial print-to-string "time"))
 (def print-month (partial print-to-string "month"))
+(def print-month-day (partial print-to-string "month-day"))
 (def print-duration (partial print-to-string "duration"))
 (def print-year (partial print-to-string "year"))
 (def print-year-month (partial print-to-string "year-month"))
@@ -67,6 +70,7 @@
        DayOfWeek (-pr-writer [d writer opts] (-write writer (print-day-of-week d)))
        LocalTime (-pr-writer [d writer opts] (-write writer (print-time d)))
        Month (-pr-writer [d writer opts] (-write writer (print-month d)))
+       MonthDay (-pr-writer [d writer opts] (-write writer (print-month-day d)))
        Duration (-pr-writer [d writer opts] (-write writer (print-duration d)))
        Year (-pr-writer [d writer opts] (-write writer (print-year d)))
        YearMonth (-pr-writer [d writer opts] (-write writer (print-year-month d)))
@@ -84,6 +88,7 @@
   #?(:clj (defmethod print-method DayOfWeek [c ^Writer w] (.write w ^String (print-day-of-week c))))
   #?(:clj (defmethod print-method LocalTime [c ^Writer w] (.write w ^String (print-time c))))
   #?(:clj (defmethod print-method Month [c ^Writer w] (.write w ^String (print-month c))))
+  #?(:clj (defmethod print-method MonthDay [c ^Writer w] (.write w ^String (print-month-day c))))
   #?(:clj (defmethod print-method Duration [c ^Writer w] (.write w ^String (print-duration c))))
   #?(:clj (defmethod print-method Year [c ^Writer w] (.write w ^String (print-year c))))
   #?(:clj (defmethod print-method YearMonth [c ^Writer w] (.write w ^String (print-year-month c)))))
@@ -99,6 +104,7 @@
 #?(:clj (defmethod print-dup DayOfWeek [c ^Writer w] (.write w ^String (print-day-of-week c))))
 #?(:clj (defmethod print-dup LocalTime [c ^Writer w] (.write w ^String (print-time c))))
 #?(:clj (defmethod print-dup Month [c ^Writer w] (.write w ^String (print-month c))))
+#?(:clj (defmethod print-dup MonthDay [c ^Writer w] (.write w ^String (print-month-day c))))
 #?(:clj (defmethod print-dup Duration [c ^Writer w] (.write w ^String (print-duration c))))
 #?(:clj (defmethod print-dup Year [c ^Writer w] (.write w ^String (print-year c))))
 #?(:clj (defmethod print-dup YearMonth [c ^Writer w] (.write w ^String (print-year-month c))))
@@ -118,6 +124,7 @@
            'time/zone             (fn [t] (. ZoneId of t))
            'time/day-of-week      (fn [t] (. DayOfWeek valueOf t))
            'time/month            (fn [t] (. Month valueOf t))
+           'time/month-day        (fn [t] (. MonthDay parse t))
            })
 
 #?(:cljs

@@ -43,6 +43,9 @@
 (defn month [x]
   (list '. 'java.time.Month 'valueOf x))
 
+(defn month-day [x]
+  (list '. 'java.time.MonthDay 'parse x))
+
 
 
 

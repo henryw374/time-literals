@@ -6,6 +6,9 @@
     #?(:cljs [cljsjs.js-joda-timezone])
     #?(:cljs [cljs.java-time.extend-eq-and-compare])))
 
+(time-literals.read-write/print-time-literals-clj!) 
+(time-literals.read-write/print-time-literals-cljs!)
+
 (defn read-tagged [o]
   #?(:clj (clojure.edn/read-string {:readers time-literals.read-write/tags} o)
      :cljs (cljs.reader/read-string o)))
@@ -17,6 +20,7 @@
               :cljs nil)
            {
             :a-month            #time/month "JUNE"
+            :a-month-day        #time/month-day "--09-09"
             :a-period           #time/period "P1D"
             :a-date             #time/date "2039-01-01"
             :a-date-time        #time/date-time "2018-07-25T08:08:44.026"
