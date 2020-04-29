@@ -2,8 +2,7 @@
 
 A Clojure(Script) library which provides tagged literals for objects from jsr-310 domain,
 which on the jvm is objects from the `java.time` library and in Javascript is a 
- '[jsr-310 clone](https://clojars.org/cljsjs/js-joda)' library (yes, it is actually an implementation of JSR-310,
- rather than joda-time, as it's name would suggest).
+ '[jsr-310 clone](https://clojars.org/cljsjs/js-joda)' library.
  
 This enables copying and pasting these objects within the REPL, conveying these objects across process boundaries & etc. 
  
