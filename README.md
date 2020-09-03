@@ -115,8 +115,6 @@ Read edn like this:
 (clojure.edn/read-string {:readers time-literals.read-write/tags} "#time/date \"2011-01-01\"")
 ```
 
-Using clojure.core/read-string, you'd need to `eval` after the call to read-string
-
 ## Alternatives
  
 If you only need `Instant` from java.time/jsr-310, you could just rebind the tag readers and printer fns for `#inst`
