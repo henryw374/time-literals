@@ -65,7 +65,7 @@
        ZonedDateTime (-pr-writer [d writer opts] (-write writer (print-zoned-date-time d)))
        OffsetTime (-pr-writer [d writer opts] (-write writer (print-offset-time d)))
        Instant (-pr-writer [d writer opts] (-write writer (print-instant d)))
-       ;OffsetDateTime      (-pr-writer [d writer opts]        (-write writer (print-offset-date-time d)))
+       OffsetDateTime      (-pr-writer [d writer opts]        (-write writer (print-offset-date-time d)))
        ZoneId (-pr-writer [d writer opts] (-write writer (print-zone d)))
        DayOfWeek (-pr-writer [d writer opts] (-write writer (print-day-of-week d)))
        LocalTime (-pr-writer [d writer opts] (-write writer (print-time d)))

@@ -1,9 +1,9 @@
-(defproject time-literals "0.1.4"
+(defproject time-literals "0.1.5"
   :description "Clojure(Script) tagged literals for jsr-310 entities"
   :url "https://github.com/henryw374/time-literals"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[cljs.java-time "0.1.16"]]
+  :dependencies [[cljs.java-time "0.1.17"]]
   :profiles {:dev
             {:source-paths ["dev"]
              :dependencies [[org.clojure/clojure "1.10.0"]
