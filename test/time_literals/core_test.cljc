@@ -1,12 +1,11 @@
 (ns time-literals.core-test
-  (:require #?(:clj [clojure.test :refer :all]
-               :cljs [cljs.test :refer-macros [deftest testing run-tests run-all-tests is]])
-                    [time-literals.data-readers]
-                    [time-literals.read-write]
-    #?(:cljs [cljsjs.js-joda-timezone])
-    #?(:cljs [cljs.java-time.extend-eq-and-compare])))
+  (:require
+    [clojure.test :refer [deftest is testing run-tests is]]
+    [time-literals.data-readers]
+    [time-literals.read-write]
+    #?@(:cljs [["@js-joda/timezone"]])))
 
-(time-literals.read-write/print-time-literals-clj!) 
+(time-literals.read-write/print-time-literals-clj!)
 (time-literals.read-write/print-time-literals-cljs!)
 
 (defn read-tagged [o]
@@ -14,11 +13,8 @@
      :cljs (cljs.reader/read-string o)))
 
 (def all (merge
-           #?(:clj {;; Following are not yet implemented in js-joda https://github.com/js-joda/js-joda/issues/165
-                    :a-offset-time #time/offset-time "08:09:46.150+01:00"
-                    }
-              :cljs nil)
            {
+            :a-offset-time      #time/offset-time "08:09:46.150+01:00"
             :a-month            #time/month "JUNE"
             :a-month-day        #time/month-day "--09-09"
             :a-period           #time/period "P1D"
@@ -40,3 +36,10 @@
     (doseq [[n v] all]
       (testing n
         (is (= v (-> v pr-str read-tagged)))))))
+
+(comment
+  clj -Adev --main cljs.main --repl
+  (require 'time-literals.core-test)
+  (in-ns 'time-literals.core-test)
+  (run-tests)
+  )
