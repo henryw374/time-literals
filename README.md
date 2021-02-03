@@ -8,6 +8,14 @@ This enables copying and pasting these objects within the REPL, conveying these 
  
 [My talk at Clojure/North 2019](https://www.youtube.com/watch?v=UFuL-ZDoB2U) provides some more background.
 
+**Note** : There is an issue when using this lib on the jvm with `clojure.core/read`,
+
+it returns code forms rather than evaluating the result of those forms. This is due to 
+
+a bug in Clojurescript, issue [CLJS-3294](https://clojure.atlassian.net/browse/CLJS-3294).
+
+Feel free to fix that issue and let me know ;-)
+
 ## Related Libraries
 
 [cljc.java-time](https://github.com/henryw374/cljc.java-time) is a one for one mapping of the classes and methods from
