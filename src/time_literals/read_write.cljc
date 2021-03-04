@@ -77,7 +77,7 @@
        )))
 
 (defn print-time-literals-clj! []
-  #?(:clj (defmethod print-method Period [c ^Writer w] (.write w ^String ^String (print-period c))))
+  #?(:clj (defmethod print-method Period [c ^Writer w] (.write w ^String (print-period c))))
   #?(:clj (defmethod print-method LocalDate [c ^Writer w] (.write w ^String (print-date c))))
   #?(:clj (defmethod print-method LocalDateTime [c ^Writer w] (.write w ^String (print-date-time c))))
   #?(:clj (defmethod print-method ZonedDateTime [c ^Writer w] (.write w ^String (print-zoned-date-time c))))
