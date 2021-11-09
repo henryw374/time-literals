@@ -127,12 +127,17 @@ Using clojure.core/read-string, you'd need to `eval` after the call to read-stri
 
 ## Alternatives
  
-If you only need `Instant` from java.time/jsr-310, you could just rebind the tag readers and printer fns for `#inst`. Note
-however that Clojure's `inst` format is based on RFC3339 and so is actually closer like java.time.OffsetDateTime (for example to
-read an `inst` tag, `OffsetDateTime/parse` will work ok, but Instant/parse will not). But... I think in most use cases
-Instant is preferred over OffsetDateTime as a representation of an absolute point in time. Doing this might also lead 
-to problems where a programmer needs to work with both java.util.Date and java.time.Instant objects - for example if using
-Datomic.    
+If you only need `Instant` from java.time/jsr-310, you could just rebind the tag readers and printer fns for 
+`#inst`. Note
+however that Clojure's `inst` format is based on RFC3339 and so is actually closer to the default format 
+for java.time.OffsetDateTime
+ (for example to
+read an `inst` tag, `OffsetDateTime/parse` will work ok, but Instant/parse will not). But... I think in most use 
+cases Instant is preferred over OffsetDateTime as a representation of an absolute point in time. Rebinding inst
+ reader and printer might 
+also lead 
+to problems where a programmer needs to work with both java.util.Date (or js/Date) and java.time.Instant objects - for example if using
+Datomic - it only works with java.util.Date objects.    
 
 There is a similar library, [java-time-literals](https://github.com/magnars/java-time-literals) but this currently only works
 on the jvm, and also doesn't provide a way to read edn with the literals (via clojure.edn/read-string or cljs.reader). The naming of tags
