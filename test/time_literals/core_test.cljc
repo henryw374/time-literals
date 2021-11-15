@@ -1,16 +1,16 @@
 (ns time-literals.core-test
   (:require
     [clojure.test :refer [deftest is testing run-tests is]]
-    [time-literals.data-readers]
+    #?(:clj [time-literals.data-readers-clj])
+    [time-literals.data-readers-cljs]
     [time-literals.read-write]
-    #?@(:cljs [["@js-joda/timezone"]])))
+    [clojure.edn :as edn]
+    #?@(:cljs [["@js-joda/timezone"]
+               [cljs.reader :as rdr]])
+    [clojure.tools.reader :as reader]))
 
 (time-literals.read-write/print-time-literals-clj!)
 (time-literals.read-write/print-time-literals-cljs!)
-
-(defn read-tagged [o]
-  #?(:clj (clojure.edn/read-string {:readers time-literals.read-write/tags} o)
-     :cljs (cljs.reader/read-string o)))
 
 (def all (merge
            {
@@ -31,15 +31,27 @@
             :a-day-of-week      #time/day-of-week "TUESDAY"
             }))
 
-(deftest a-test
+(deftest symmetricity-test
   (testing "all can be printed and read"
     (doseq [[n v] all]
       (testing n
-        (is (= v (-> v pr-str read-tagged)))))))
+        (testing "edn"
+          (is (= v (->> v pr-str (edn/read-string
+                                   {:readers time-literals.read-write/tags})))))
+        (testing "native read"
+          (let [read-fn #?(:clj read-string :cljs rdr/read-string)]
+            (is (= v (->> v pr-str read-fn)))))
+        (testing "tools.reader"
+          (binding [reader/*data-readers* time-literals.read-write/tags]
+            (is (= v (->> v pr-str reader/read-string)))))))))
+
 
 (comment
-  clj -Adev --main cljs.main --repl
+  clj -Mdev --main cljs.main --repl
   (require 'time-literals.core-test)
   (in-ns 'time-literals.core-test)
   (run-tests)
+  (edn/read-string "#time/day-of-week \"TUESDAY\""
+    {:readers time-literals.read-write/tags})
+  (cljs.reader/read-string "#time/day-of-week \"TUESDAY\"")
   )

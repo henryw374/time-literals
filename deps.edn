@@ -1,5 +1,7 @@
-{:paths ["src"]
- :deps {cljs.java-time/cljs.java-time {:mvn/version "0.1.18"}}
+{:paths   ["src"]
+ :deps    {cljs.java-time/cljs.java-time {:mvn/version "0.1.19"}}
  :aliases {:dev {:extra-paths ["test"]
-                 :extra-deps {org.clojure/clojurescript {:mvn/version "1.10.773"}
+                 :extra-deps {
+                              org.clojure/clojurescript {:mvn/version "1.10.896"}
+                              ;org.clojure/clojurescript {:mvn/version "1.10.773"}
                               cljsjs/js-joda-timezone       {:mvn/version "2.2.0-0"}}}}}
