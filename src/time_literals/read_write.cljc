@@ -16,25 +16,27 @@
                             Year
                             YearMonth
                             MonthDay]]
-         [cljs.reader :as reader])]
+         [cljs.reader :as reader]
+         [time-literals.data-readers-cljs])]
       :clj
       [
-       (:import (java.io Writer)
-                [java.time Period
-                           LocalDate
-                           LocalDateTime
-                           ZonedDateTime
-                           OffsetTime
-                           Instant
-                           OffsetDateTime
-                           ZoneId
-                           DayOfWeek
-                           LocalTime
-                           Month
-                           Duration
-                           Year
-                           YearMonth
-                           MonthDay])]))
+       (:require [clojure.java.io :as io]
+                 [time-literals.data-readers-clj]) (:import (java.io Writer)
+                                                    [java.time Period
+                                                               LocalDate
+                                                               LocalDateTime
+                                                               ZonedDateTime
+                                                               OffsetTime
+                                                               Instant
+                                                               OffsetDateTime
+                                                               ZoneId
+                                                               DayOfWeek
+                                                               LocalTime
+                                                               Month
+                                                               Duration
+                                                               Year
+                                                               YearMonth
+                                                               MonthDay])]))
 
 (defn- print-to-string [t o]
   (str "#time/" t " \"" (str o) "\""))
@@ -110,26 +112,24 @@
 #?(:clj (defmethod print-dup YearMonth [c ^Writer w] (.write w ^String (print-year-month c))))
 
 
-(def tags {'time/period           (fn [t] (. Period parse t))
-           'time/date             (fn [t] (. LocalDate parse t))
-           'time/date-time        (fn [t] (. LocalDateTime parse t))
-           'time/zoned-date-time  (fn [t] (. ZonedDateTime parse t))
-           'time/offset-time      (fn [t] (. OffsetTime parse t))
-           'time/instant          (fn [t] (. Instant parse t))
-           'time/offset-date-time (fn [t] (. OffsetDateTime parse t))
-           'time/time             (fn [t] (. LocalTime parse t))
-           'time/duration         (fn [t] (. Duration parse t))
-           'time/year             (fn [t] (. Year parse t))
-           'time/year-month       (fn [t] (. YearMonth parse t))
-           'time/zone             (fn [t] (. ZoneId of t))
-           'time/day-of-week      (fn [t] (. DayOfWeek valueOf t))
-           'time/month            (fn [t] (. Month valueOf t))
-           'time/month-day        (fn [t] (. MonthDay parse t))
-           })
-
-#?(:cljs
-   (do
-     (doseq [[tag read-fn] tags]
-       (reader/register-tag-parser! tag read-fn))))
+(def tags
+  ;necessarily a straight copy of data_readers.cljc. cannot read it in macro bc could be many on classpath
+  {
+   'time/period           #?(:cljs time-literals.data-readers-cljs/period           :clj time-literals.data-readers-clj/period)
+   'time/date             #?(:cljs time-literals.data-readers-cljs/date             :clj time-literals.data-readers-clj/date)
+   'time/date-time        #?(:cljs time-literals.data-readers-cljs/date-time        :clj time-literals.data-readers-clj/date-time)
+   'time/zoned-date-time  #?(:cljs time-literals.data-readers-cljs/zoned-date-time  :clj time-literals.data-readers-clj/zoned-date-time)
+   'time/offset-time      #?(:cljs time-literals.data-readers-cljs/offset-time      :clj time-literals.data-readers-clj/offset-time)
+   'time/instant          #?(:cljs time-literals.data-readers-cljs/instant          :clj time-literals.data-readers-clj/instant)
+   'time/offset-date-time #?(:cljs time-literals.data-readers-cljs/offset-date-time :clj time-literals.data-readers-clj/offset-date-time)
+   'time/zone             #?(:cljs time-literals.data-readers-cljs/zone             :clj time-literals.data-readers-clj/zone)
+   'time/day-of-week      #?(:cljs time-literals.data-readers-cljs/day-of-week      :clj time-literals.data-readers-clj/day-of-week)
+   'time/time             #?(:cljs time-literals.data-readers-cljs/time             :clj time-literals.data-readers-clj/time)
+   'time/month            #?(:cljs time-literals.data-readers-cljs/month            :clj time-literals.data-readers-clj/month)
+   'time/month-day        #?(:cljs time-literals.data-readers-cljs/month-day        :clj time-literals.data-readers-clj/month-day)
+   'time/duration         #?(:cljs time-literals.data-readers-cljs/duration         :clj time-literals.data-readers-clj/duration)
+   'time/year             #?(:cljs time-literals.data-readers-cljs/year             :clj time-literals.data-readers-clj/year)
+   'time/year-month       #?(:cljs time-literals.data-readers-cljs/year-month       :clj time-literals.data-readers-clj/year-month)
+   })
 
 
