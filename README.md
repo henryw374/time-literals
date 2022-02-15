@@ -21,9 +21,10 @@ The [tick](https://clojars.org/tick) library is an intuitive Clojure(Script) lib
 
 ## Usage
 
-Lein/Boot 
+Lein/Boot/Deps 
 
-[![Clojars Project](https://img.shields.io/clojars/v/time-literals.svg)](https://clojars.org/time-literals)
+[![Clojars Project](https://img.shields.io/clojars/v/com.widdindustries/time-literals.svg)](https://clojars.org/com.widdindustries/time-literals)
+
 
 The library includes the magic file `data_readers.cljc` which Clojure and the Clojurescript
 compilers() will look for.
