@@ -1,7 +1,7 @@
 (ns time-literals.core-test
   (:require
     [clojure.test :refer [deftest is testing run-tests is]]
-    #?(:clj [time-literals.data-readers-clj])
+    #?(:clj [time-literals.data-readers])
     [time-literals.data-readers-cljs]
     [time-literals.read-write]
     [clojure.edn :as edn]

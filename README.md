@@ -6,9 +6,9 @@ which on the jvm is objects from the `java.time` library and in Javascript is a
  
 This enables copying and pasting these objects within the REPL, conveying these objects across process boundaries & etc. 
  
-[My talk at Clojure/North 2019](https://www.youtube.com/watch?v=UFuL-ZDoB2U) provides some more background.
+[This talk](https://www.youtube.com/watch?v=UFuL-ZDoB2U) provides some more background.
 
-**Note** : To use this from Clojurescript, you must have version 1.XXX or higher
+**Note** : To use this from Clojurescript, you must have version 1.11.4 or higher
 
 ## Related Libraries
 
@@ -116,8 +116,6 @@ Read edn like this:
 ```
 (clojure.edn/read-string {:readers time-literals.read-write/tags} "#time/date \"2011-01-01\"")
 ```
-
-Using clojure.core/read-string, you'd need to `eval` after the call to read-string
 
 ## Alternatives
  

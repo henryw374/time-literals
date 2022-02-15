@@ -1,10 +1,10 @@
 {:paths   ["src"]
  :deps    {cljs.java-time/cljs.java-time {:mvn/version "0.1.19"}}
- :aliases {:dev {:extra-paths ["test"]
+ :aliases {:dev {:extra-paths ["test" "dev"]
                  :extra-deps  {
-                               org.clojure/clojurescript {:git/url "https://github.com/clojure/clojurescript.git"
-                                                          :git/sha "5e7fd72f7fa25e10241f229998e5620d79bc0aad"
-                                                          ;:mvn/version "1.10.896"
+                               org.clojure/clojurescript { ;:git/url "https://github.com/clojure/clojurescript.git"
+                                                          ;:git/sha "5e7fd72f7fa25e10241f229998e5620d79bc0aad"
+                                                          :mvn/version "1.11.4"
                                                           }
                                cljsjs/js-joda-timezone   {:mvn/version "2.2.0-0"}}}
            :release   {:extra-deps {applied-science/deps-library {:mvn/version "RELEASE"}}

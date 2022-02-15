@@ -1,4 +1,4 @@
-(ns time-literals.data-readers-clj
+(ns time-literals.data-readers
   (:refer-clojure :exclude [time])
   (:import (java.time LocalDate Instant LocalTime OffsetTime Duration Period ZonedDateTime OffsetDateTime LocalDateTime Year YearMonth ZoneId DayOfWeek Month MonthDay)))
 
