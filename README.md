@@ -1,14 +1,20 @@
 # time-literals
 
-A Clojure(Script) library which provides tagged literals for objects from jsr-310 domain,
-which on the jvm is objects from the `java.time` library and in Javascript is a 
- '[jsr-310 clone](https://clojars.org/cljsjs/js-joda)' library.
+A Clojure(Script) library which provides tagged literals for java.time objects,
+which on the jvm is objects from the `java.time` platform library and in Javascript is a 
+ java.time clone, called '[js-joda](https://js-joda.github.io/js-joda/)' .
  
 This enables copying and pasting these objects within the REPL, conveying these objects across process boundaries & etc. 
  
 [This talk](https://www.youtube.com/watch?v=UFuL-ZDoB2U) provides some more background.
 
-**Note** : To use this from Clojurescript, you must have version 1.11.4 or higher
+**Note** : To use this from Clojurescript, you must have an as yet unreleased version e.g. :
+
+```clojure
+
+clj -Sdeps '{:deps {org.clojure/clojurescript {:git/url "https://github.com/clojure/clojurescript.git" :git/sha "f3e0bb503333bb53c4312d4bc19aa24505185667" } com.widdindustries/time-literals {:mvn/version "0.1.6"} }}' -m cljs.main  -re node  --repl 
+
+```
 
 ## Related Libraries
 
@@ -58,19 +64,8 @@ Example literals:
 For example, in a Clojure repl:
 
 ```
-(require 'time-literals.data-readers)
- 
-; Get a node repl going, or equivalent start figwheel and connect with sidecar etc 
-(require '[cljs.repl :as cljs-repl])
-(require '[cljs.repl.node :as node])          
-
-(cljs-repl/repl* (node/repl-env)
-  {:output-dir "out"
-   :optimizations :none
-   :cache-analysis true
-   :source-map true})
   
- ;Now, in cljs repl
+ ;In a cljs repl
  (require '[java.time])  
  (println #time/duration "PT1S")
  ; => #object[Duration PT1S]
@@ -80,9 +75,6 @@ For example, in a Clojure repl:
  (println #time/duration "PT1S")
  ; => #time/duration "PT1S"   
       
- Read an edn string:
-      
- (cljs.reader/read-string "#time/date \"2011-01-01\"")     
 
 ```
 
@@ -103,7 +95,7 @@ As with any non-core tagged literal, the tag reader functions referred to from a
 
 ```
 
-#### Reading and Writing edn
+### Reading and Writing edn
  
  ```
  (require '[time-literals.read-write])
