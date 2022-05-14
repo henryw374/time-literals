@@ -8,13 +8,7 @@ This enables copying and pasting these objects within the REPL, conveying these 
  
 [This talk](https://www.youtube.com/watch?v=UFuL-ZDoB2U) provides some more background.
 
-**Note** : To use this from Clojurescript, you must have an as yet unreleased version e.g. :
-
-```clojure
-
-clj -Sdeps '{:deps {org.clojure/clojurescript {:git/url "https://github.com/clojure/clojurescript.git" :git/sha "f3e0bb503333bb53c4312d4bc19aa24505185667" } com.widdindustries/time-literals {:mvn/version "0.1.6"} }}' -m cljs.main  -re node  --repl 
-
-```
+**Note** : To use this from Clojurescript, you must have at least version 1.11.51
 
 ## Related Libraries
 
