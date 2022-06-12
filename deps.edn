@@ -1,23 +1,20 @@
 {:paths   ["src"]
  :deps    {cljs.java-time/cljs.java-time {:mvn/version "0.1.19"}}
- :aliases {:dev {:extra-paths ["test" "dev"]
-                 :extra-deps  {
-                               org.clojure/clojurescript { ;:git/url "https://github.com/clojure/clojurescript.git"
-                                                          ;:git/sha "5e7fd72f7fa25e10241f229998e5620d79bc0aad"
-                                                          :mvn/version "1.11.4"
-                                                          }
-                               cljsjs/js-joda-timezone   {:mvn/version "2.2.0-0"}}}
-           :release   {:extra-deps {applied-science/deps-library {:mvn/version "RELEASE"}}
-                       :main-opts  ["-m" "applied-science.deps-library"]}
-
+ :aliases {:test-cljs {:extra-paths ["dev " "test" "web-target"]
+                       :extra-deps  {com.widdindustries/tiado-cljs2
+                                     {;:local/root "../tiado-cljs2"
+                                      :git/url "https://github.com/henryw374/tiado-cljs2.git"
+                                      :sha     "9d211a99388ca3e1f9c0a15711fc55a2e1223273"}
+                                     cljsjs/js-joda-timezone {:mvn/version "2.2.0-0"}}}
            :test      {:extra-paths ["test"]
-                       :extra-deps  {org.clojure/clojure {:mvn/version "1.11.0-alpha4"}
-                                     org.clojure/tools.reader {:mvn/version "1.3.6"}
+                       :extra-deps  {org.clojure/clojure       {:mvn/version "1.11.0"}
+                                     org.clojure/tools.reader  {:mvn/version "1.3.6"}
                                      com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
                                                                 :sha     "028a6d41ac9ac5d5c405dfc38e4da6b4cc1255d5"}}
                        :main-opts   ["-m" "cognitect.test-runner"]}
-           :test-cljs {:extra-paths ["test" "cljs-test-runner-out/gen"]
-                       :extra-deps  {olical/cljs-test-runner   {:mvn/version "3.5.0"}}
-                       :main-opts   ["-m" "cljs-test-runner.main" "-c" "test/cljs-test-opts.edn" "-x" "chrome-headless"]
-                       }}
-           }
+           :build     {:extra-paths ["dev"]
+                       :extra-deps  {io.github.clojure/tools.build {:git/tag "v0.7.5" :git/sha "34727f7"}
+                                     slipset/deps-deploy {:mvn/version "RELEASE"}}
+                       :ns-default  build}}
+
+ }

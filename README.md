@@ -2,7 +2,7 @@
 
 A Clojure(Script) library which provides tagged literals for java.time objects,
 which on the jvm is objects from the `java.time` platform library and in Javascript is a 
- java.time clone, called '[js-joda](https://js-joda.github.io/js-joda/)' .
+ java.time clone, called '[js-joda](https://js-joda.github.io/js-joda/)'.
  
 This enables copying and pasting these objects within the REPL, conveying these objects across process boundaries & etc. 
  
@@ -27,7 +27,7 @@ Lein/Boot/Deps
 
 
 The library includes the magic file `data_readers.cljc` which Clojure and the Clojurescript
-compilers() will look for.
+compilers will look for.
 
 In order to modify the printer to print these literals, run: 
 

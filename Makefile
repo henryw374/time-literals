@@ -1,18 +1,18 @@
 test-clj:
 			clojure -Mtest 
-test-cljs:
-			rm -rf cljs-test-runner-out && mkdir -p cljs-test-runner-out/gen && clojure -Sverbose -Mtest-cljs
-
+test-cljs-shadow:
+			clojure -Atest-cljs -X com.widdindustries.tiado-cljs2/tests-ci-shadow :compile-mode :release
 test:
 			make test-clj && make test-cljs
-
+clean:
+			clj -T:build clean
 install:
-			clojure -M:release install --version $(VERSION)
+			make clean && clj -T:build jar && clj -T:build install \
+			&& mkdir -p tmp && cd tmp
 deploy:
-			clojure -M:release --version $(VERSION)
+			clj -T:build deploy
 
-shadow:
-	npm install; npx shadow-cljs watch test
+
 
 # hooray for stackoverflow
 .PHONY: list
