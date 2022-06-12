@@ -22,9 +22,9 @@ jobs:
 
       - name: Run Clj Unit tests
         run: make test-clj
-        
-      - name: Install Chrome  
+
+      - name: Install Chrome
         uses: browser-actions/setup-chrome@latest
-        
-      - name: Run Cljs Unit tests  
+
+      - name: Run Cljs Unit tests
         run: make test-cljs-shadow        

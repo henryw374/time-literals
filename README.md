@@ -8,7 +8,7 @@ This enables copying and pasting these objects within the REPL, conveying these 
  
 [This talk](https://www.youtube.com/watch?v=UFuL-ZDoB2U) provides some more background.
 
-**Note** : To use this from Clojurescript, you must have at least version 1.11.51
+**Note** : To use this from Clojurescript, you must have at least version 1.11.51. If using shadow-cljs, it must be at least version 2.19.3
 
 ## Related Libraries
 
@@ -71,10 +71,6 @@ For example, in a Clojure repl:
       
 
 ```
-
-#### Self-hosted Cljs
-
-TODO
 
 ### Clojure
 
