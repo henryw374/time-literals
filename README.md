@@ -1,6 +1,5 @@
 [![Clojars Project](https://img.shields.io/clojars/v/com.widdindustries/time-literals.svg)](https://clojars.org/com.widdindustries/time-literals)
 
-
 [![Tests build](https://github.com/henryw374/time-literals/actions/workflows/tests.yaml/badge.svg)](https://github.com/henryw374/time-literals/actions/workflows/tests.yaml)
 
 

@@ -1,5 +1,5 @@
 {:paths   ["src"]
- :deps    {cljs.java-time/cljs.java-time {:mvn/version "0.1.19"}}
+ :deps    {com.widdindustries/cljs.java-time {:mvn/version "0.1.20"}}
  :aliases {:test-cljs {:extra-paths ["dev " "test" "web-target"]
                        :extra-deps  {com.widdindustries/tiado-cljs2
                                      { ;:local/root "../tiado-cljs2"

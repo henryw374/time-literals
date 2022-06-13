@@ -1,7 +1,15 @@
+.cpcache
+node_modules
+.idea
+.shadow-cljs
+web-target/public/*
+package.json
+package-lock.json
+.clj-kondo/.cache
 /target
+*.iml
 /classes
 /checkouts
-pom.xml
 pom.xml.asc
 *.jar
 *.class
