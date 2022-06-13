@@ -1,3 +1,9 @@
+[![Clojars Project](https://img.shields.io/clojars/v/com.widdindustries/time-literals.svg)](https://clojars.org/com.widdindustries/time-literals)
+
+
+[![Tests build](https://github.com/henryw374/time-literals/actions/workflows/tests.yaml/badge.svg)](https://github.com/henryw374/time-literals/actions/workflows/tests.yaml)
+
+
 # time-literals
 
 A Clojure(Script) library which provides tagged literals for java.time objects,
@@ -22,8 +28,6 @@ The [tick](https://clojars.org/tick) library is an intuitive Clojure(Script) lib
 ## Usage
 
 Lein/Boot/Deps 
-
-[![Clojars Project](https://img.shields.io/clojars/v/com.widdindustries/time-literals.svg)](https://clojars.org/com.widdindustries/time-literals)
 
 
 The library includes the magic file `data_readers.cljc` which Clojure and the Clojurescript
