@@ -2,9 +2,10 @@
  :deps    {cljs.java-time/cljs.java-time {:mvn/version "0.1.19"}}
  :aliases {:test-cljs {:extra-paths ["dev " "test" "web-target"]
                        :extra-deps  {com.widdindustries/tiado-cljs2
-                                     {;:local/root "../tiado-cljs2"
+                                     { ;:local/root "../tiado-cljs2"
                                       :git/url "https://github.com/henryw374/tiado-cljs2.git"
-                                      :sha     "9d211a99388ca3e1f9c0a15711fc55a2e1223273"}
+                                      :sha     "fbd9f3b8df3523ccf11bbc685836ce7f96f18068"
+                                      }
                                      cljsjs/js-joda-timezone {:mvn/version "2.2.0-0"}}}
            :test      {:extra-paths ["test"]
                        :extra-deps  {org.clojure/clojure       {:mvn/version "1.11.0"}
@@ -14,7 +15,7 @@
                        :main-opts   ["-m" "cognitect.test-runner"]}
            :build     {:extra-paths ["dev"]
                        :extra-deps  {io.github.clojure/tools.build {:git/tag "v0.7.5" :git/sha "34727f7"}
-                                     slipset/deps-deploy {:mvn/version "RELEASE"}}
+                                     slipset/deps-deploy           {:mvn/version "RELEASE"}}
                        :ns-default  build}}
 
  }
