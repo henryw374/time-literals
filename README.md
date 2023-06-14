@@ -5,6 +5,11 @@
 
 # time-literals
 
+```clojure 
+#time/period "P1D"
+#time/date "2039-01-01"
+```
+
 A Clojure(Script) library which provides tagged literals for java.time objects,
 which on the jvm is objects from the `java.time` platform library and in Javascript is a 
  java.time clone, called '[js-joda](https://js-joda.github.io/js-joda/)'.
@@ -14,6 +19,41 @@ This enables copying and pasting these objects within the REPL, conveying these 
 [This talk](https://www.youtube.com/watch?v=UFuL-ZDoB2U) provides some more background.
 
 **Note** : To use this from Clojurescript, you must have at least version 1.11.51. If using shadow-cljs, it must be at least version 2.19.3
+
+## Rationale 
+
+### What is `#inst` ?
+
+Reader Literals were a [headline new feature in Clojure 1.4](https://github.com/clojure/clojure/blob/master/changes.md#21-reader-literals) and with that came built-in support for the [#inst tag](https://github.com/clojure/clojure/blob/master/changes.md#211-instant-literals). The `#inst` tag is a part of the edn spec, where it is defined as representing [an instant in time](https://github.com/edn-format/edn#inst-rfc-3339-format), which means a point in time relative to UTC that is given to (at least) millisecond precision.
+
+In Clojure(script), `#inst` is read as a legacy platform `Date` object by default, but as is made clear by the edn spec and by [this talk from Rich Hickey](https://github.com/matthiasn/talk-transcripts/blob/master/Hickey_Rich/AreasOfInterestForClojuresCore.md#extensible-reader) the default implementation is just that: `#inst` may be read to whatever internal representation is useful to a consuming program. For example a program running on the jvm could read `#inst` tags to java.time.Instant (or java.time.OffsetDateTime if wishing to preserve the UTC offset information). It seems to me unfortunate that Clojure(script) provided defaults for `#inst` because users may not realise it is 'just a default', but that's just my opinion. My guess is that Clojure is trying to be both simple and easy in this case.
+
+When conveying data using edn format, built-in tagged elements are preferred to user defined elements.
+
+### The need for more Tagged Elements representing Dates in edn
+
+There are many kinds of things relating to date and time that are not an `instant in time`, so `#inst` would not be an appropriate way to tag them. For example the month of a particular year such as 'January 1990' or a calendar date such as 'the first of June, 3030'. There are no built-in edn tags for these.
+
+Note that the default Clojure reader behaviour is to accept partially specified instants, such as `#inst "2020"` (and read that to a Date with millisecond precision) - but this is specific to the Clojure implementation and not valid edn (AFAIK). 
+
+### Round-tripping at the REPL
+
+Clojure 2 provides mechanisms for printing objects - abstract and concrete as this code printing the same object shows:
+
+```clojure
+(let [h (java.util.HashMap. )]
+  [(pr-str h)
+   (binding [*print-dup* true]
+     (pr-str h))])
+
+=> ["{}" "#=(java.util.HashMap. {})"]
+```
+
+The concrete representation is sometimes useful to know and also the string output can be passed back to the reader to recreate the same internal representation again, which is known as `round-tripping`. 
+
+The default readers and printers of platform date objects don't allow round-tripping, [the reason for which is unknown](https://ask.clojure.org/index.php/11898/printing-and-reading-date-types).
+
+This is relevant to the java.time types which logically correspond to `#inst` (java.time.Instant and java.time.OffsetDateTime). This library contains specific readers and printers for those objects so that they do round-trip. When conveying these objects out of process in edn format, they should be tagged as `#inst` of course.
 
 ## Related Libraries
 
@@ -26,8 +66,7 @@ The [tick](https://clojars.org/tick) library is an intuitive Clojure(Script) lib
 
 ## Usage
 
-Lein/Boot/Deps 
-
+Note: IMHO one should avoid putting tag literals in source code because a tag can be bound to different readers in different contexts, but code will be expecting some specific API. Additionally one has to add a side-effecting require of the tag-reader-namespace to make sure the reader function (ie the one you hope is bound to the tag) exists. tl;dr - it is too magical.
 
 The library includes the magic file `data_readers.cljc` which Clojure and the Clojurescript
 compilers will look for.
