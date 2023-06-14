@@ -38,15 +38,14 @@ Note that the default Clojure reader behaviour is to accept partially specified 
 
 ### Round-tripping at the REPL
 
-Clojure 2 provides mechanisms for printing objects - abstract and concrete as this code printing the same object shows:
+Clojure provides two mechanisms for printing objects - abstract and concrete as this code printing the same object shows:
 
 ```clojure
-(let [h (java.util.HashMap. )]
-  [(pr-str h)
-   (binding [*print-dup* true]
-     (pr-str h))])
-
-=> ["{}" "#=(java.util.HashMap. {})"]
+(let [h (java.util.HashMap.)]
+  {:abstract (pr-str h)
+   :concrete (binding [*print-dup* true]
+               (pr-str h))})
+=> {:abstract "{}", :concrete "#=(java.util.HashMap. {})"}
 ```
 
 The concrete representation is sometimes useful to know and also the string output can be passed back to the reader to recreate the same internal representation again, which is known as `round-tripping`. 
