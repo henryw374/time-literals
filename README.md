@@ -52,7 +52,7 @@ The concrete representation is sometimes useful to know and also the string outp
 
 The default readers and printers of platform date objects don't allow round-tripping, [the reason for which is unknown](https://ask.clojure.org/index.php/11898/printing-and-reading-date-types).
 
-This is relevant to the java.time types which logically correspond to `#inst` (java.time.Instant and java.time.OffsetDateTime). This library contains specific readers and printers for those objects so that they do round-trip. When conveying these objects out of process in edn format, they should be tagged as `#inst` of course.
+This is relevant to the java.time types which logically correspond to `#inst` (java.time.Instant and java.time.OffsetDateTime). This library contains specific readers and printers for those objects so that they do round-trip. When conveying these objects out of process in edn format, they should be tagged as `#inst` of course. To do that, simply provide your own implementation of `clojure.core/print-method` for those types. With `*print-dup*` true, the concrete type will still show.
 
 ## Related Libraries
 
