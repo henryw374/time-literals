@@ -19,12 +19,18 @@ jobs:
         uses: DeLaGuardo/setup-clojure@4.0
         with:
           cli: 1.10.1.693 # Clojure CLI based on tools.deps
-
-      - name: Run Clj Unit tests
-        run: make test-clj
-
+          
       - name: Install Chrome
-        uses: browser-actions/setup-chrome@latest
+        uses: browser-actions/setup-chrome@latest          
 
-      - name: Run Cljs Unit tests
-        run: make test-cljs-shadow        
+      - name: Run Clj Unit tests (jsjoda)
+        run: make test-clj-jsjoda
+
+      - name: Run Cljs Unit tests (jsjoda)
+        run: make test-cljs-jsjoda
+          
+      - name: Run Clj Unit tests (tempo)
+        run: make test-clj-tempo
+
+      - name: Run Cljs Unit tests (tempo)
+        run: make test-cljs-tempo          

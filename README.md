@@ -1,4 +1,3 @@
-[![Clojars Project](https://img.shields.io/clojars/v/com.widdindustries/time-literals.svg)](https://clojars.org/com.widdindustries/time-literals)
 
 [![Tests build](https://github.com/henryw374/time-literals/actions/workflows/tests.yaml/badge.svg)](https://github.com/henryw374/time-literals/actions/workflows/tests.yaml)
 
@@ -6,16 +5,16 @@
 # time-literals
 
 ```clojure 
-#time/period "P1D"
 #time/date "2039-01-01"
 ```
 
-A Clojure(Script) library which provides tagged literals for java.time objects,
-which on the jvm is objects from the `java.time` platform library and in Javascript is a 
- java.time clone, called '[js-joda](https://js-joda.github.io/js-joda/)'.
- 
-This enables copying and pasting these objects within the REPL, conveying these objects across process boundaries & etc. 
- 
+A Clojure(Script) library which provides tagged literals for date-time objects
+
+There are two artifacts:
+* [![java.time and js-joda](https://img.shields.io/clojars/v/com.widdindustries/time-literals.svg)](https://clojars.org/com.widdindustries/time-literals). on js runtimes the objects are those of a
+  java.time clone, called '[js-joda](https://js-joda.github.io/js-joda/)'
+* [![java.time and temporal](https://img.shields.io/clojars/v/com.widdindustries/time-literals-tempo.svg)](https://clojars.org/com.widdindustries/time-literals-tempo) on js-runtimes the objects are from the platform Temporal API - see [Tempo](https://github.com/henryw374/tempo) lib for more info
+  
 [This talk](https://www.youtube.com/watch?v=UFuL-ZDoB2U) provides some more background.
 
 **Note** : To use this from Clojurescript, you must have at least version 1.11.51. If using shadow-cljs, it must be at least version 2.19.3
@@ -48,7 +47,7 @@ Clojure provides two mechanisms for printing objects - abstract and concrete as 
 => {:abstract "{}", :concrete "#=(java.util.HashMap. {})"}
 ```
 
-The concrete representation is sometimes useful to know and also the string output can be passed back to the reader to recreate the same internal representation again, which is known as `round-tripping`. 
+When at the REPL and using say, persistent datastructures, the concrete representation is rarely useful to know, but when dealing with date-time objects it is always useful. Also, the string output can be passed back to the reader to recreate the same internal representation again, which is known as `round-tripping`. 
 
 The default readers and printers of platform date objects don't allow round-tripping, [the reason for which is unknown](https://ask.clojure.org/index.php/11898/printing-and-reading-date-types).
 

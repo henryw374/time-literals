@@ -1,16 +1,24 @@
-test-clj:
-			clojure -Mtest 
-test-cljs-shadow:
-			clojure -Atest-cljs -X com.widdindustries.tiado-cljs2/tests-ci-shadow :compile-mode :release
-test:
-			make test-clj && make test-cljs
 clean:
 			clj -T:build clean
-install:
-			make clean && clj -T:build jar && clj -T:build install \
+test-clj-jsjoda:
+			clojure -Mtest-clj:test-clj-jsjoda:jsjoda -d jsjoda/test 
+test-cljs-jsjoda:
+			clojure -Ajsjoda:test-cljs:test-cljs-jsjoda -X com.widdindustries.tiado-cljs2/tests-ci-shadow :compile-mode :release
+install-jsjoda:
+			make clean && clj -T:build jar :artifact "jsjoda" && clj -T:build install :artifact "jsjoda" \
 			&& mkdir -p tmp && cd tmp
-deploy:
-			clj -T:build deploy
+deploy-jsjoda:
+			clj -T:build deploy :artifact "jsjoda"
+			
+test-clj-tempo:
+			clojure -Mtest-clj:test-clj-tempo:tempo -d tempo/test 
+test-cljs-tempo:
+			clojure -Atempo:test-cljs:test-cljs-tempo -X cljs/tests-ci-temporal :compile-mode :release
+install-tempo:
+			make clean && clj -T:build jar :artifact "tempo" && clj -T:build install :artifact "tempo" \
+			&& mkdir -p tmp && cd tmp
+deploy-tempo:
+			clj -T:build deploy :artifact "tempo"			
 
 
 
