@@ -1,21 +1,6 @@
 (ns time-literals.read-write
   #?@(:cljs
       [(:require
-         [java.time :refer [Period
-                            LocalDate
-                            LocalDateTime
-                            ZonedDateTime
-                            OffsetTime
-                            Instant
-                            OffsetDateTime
-                            ZoneId
-                            DayOfWeek
-                            LocalTime
-                            Month
-                            Duration
-                            Year
-                            YearMonth
-                            MonthDay]]
          [cljs.reader :as reader]
          [time-literals.data-readers-cljs])]
       :clj
@@ -61,21 +46,21 @@
 
   #?(:cljs
      (extend-protocol IPrintWithWriter
-       Period (-pr-writer [d writer opts] (-write writer (print-period d)))
-       LocalDate (-pr-writer [d writer opts] (-write writer (print-date d)))
-       LocalDateTime (-pr-writer [d writer opts] (-write writer (print-date-time d)))
-       ZonedDateTime (-pr-writer [d writer opts] (-write writer (print-zoned-date-time d)))
-       OffsetTime (-pr-writer [d writer opts] (-write writer (print-offset-time d)))
-       Instant (-pr-writer [d writer opts] (-write writer (print-instant d)))
-       OffsetDateTime (-pr-writer [d writer opts] (-write writer (print-offset-date-time d)))
-       ZoneId (-pr-writer [d writer opts] (-write writer (print-zone d)))
-       DayOfWeek (-pr-writer [d writer opts] (-write writer (print-day-of-week d)))
-       LocalTime (-pr-writer [d writer opts] (-write writer (print-time d)))
-       Month (-pr-writer [d writer opts] (-write writer (print-month d)))
-       MonthDay (-pr-writer [d writer opts] (-write writer (print-month-day d)))
-       Duration (-pr-writer [d writer opts] (-write writer (print-duration d)))
-       Year (-pr-writer [d writer opts] (-write writer (print-year d)))
-       YearMonth (-pr-writer [d writer opts] (-write writer (print-year-month d)))
+       ;Period (-pr-writer [d writer opts] (-write writer (print-period d)))
+       js/Temporal.PlainDate (-pr-writer [d writer opts] (-write writer (print-date d)))
+       js/Temporal.PlainDateTime (-pr-writer [d writer opts] (-write writer (print-date-time d)))
+       js/Temporal.ZonedDateTime (-pr-writer [d writer opts] (-write writer (print-zoned-date-time d)))
+       ;OffsetTime (-pr-writer [d writer opts] (-write writer (print-offset-time d)))
+       js/Temporal.Instant (-pr-writer [d writer opts] (-write writer (print-instant d)))
+       ;OffsetDateTime (-pr-writer [d writer opts] (-write writer (print-offset-date-time d)))
+       js/Temporal.TimeZone (-pr-writer [d writer opts] (-write writer (print-zone d)))
+       ;DayOfWeek (-pr-writer [d writer opts] (-write writer (print-day-of-week d)))
+       js/Temporal.PlainTime (-pr-writer [d writer opts] (-write writer (print-time d)))
+       ;Month (-pr-writer [d writer opts] (-write writer (print-month d)))
+       js/Temporal.PlainMonthDay (-pr-writer [d writer opts] (-write writer (print-month-day d)))
+       js/Temporal.Duration (-pr-writer [d writer opts] (-write writer (print-duration d)))
+       ;Year (-pr-writer [d writer opts] (-write writer (print-year d)))
+       js/Temporal.PlainYearMonth (-pr-writer [d writer opts] (-write writer (print-year-month d)))
        )))
 
 (defn print-time-literals-clj! []
@@ -116,20 +101,20 @@
 (def tags
   ;necessarily a straight copy of data_readers.cljc. cannot read it in macro bc could be many on classpath
   {
-   'time/period           #?(:cljs time-literals.data-readers-cljs/period :clj time-literals.data-readers/period)
+   'time/period           #?(:cljs str :clj time-literals.data-readers/period)
    'time/date             #?(:cljs time-literals.data-readers-cljs/date :clj time-literals.data-readers/date)
    'time/date-time        #?(:cljs time-literals.data-readers-cljs/date-time :clj time-literals.data-readers/date-time)
    'time/zoned-date-time  #?(:cljs time-literals.data-readers-cljs/zoned-date-time :clj time-literals.data-readers/zoned-date-time)
-   'time/offset-time      #?(:cljs time-literals.data-readers-cljs/offset-time :clj time-literals.data-readers/offset-time)
+   'time/offset-time      #?(:cljs str :clj time-literals.data-readers/offset-time)
    'time/instant          #?(:cljs time-literals.data-readers-cljs/instant :clj time-literals.data-readers/instant)
-   'time/offset-date-time #?(:cljs time-literals.data-readers-cljs/offset-date-time :clj time-literals.data-readers/offset-date-time)
+   'time/offset-date-time #?(:cljs str :clj time-literals.data-readers/offset-date-time)
    'time/zone             #?(:cljs time-literals.data-readers-cljs/zone :clj time-literals.data-readers/zone)
-   'time/day-of-week      #?(:cljs time-literals.data-readers-cljs/day-of-week :clj time-literals.data-readers/day-of-week)
+   'time/day-of-week      #?(:cljs str :clj time-literals.data-readers/day-of-week)
    'time/time             #?(:cljs time-literals.data-readers-cljs/time :clj time-literals.data-readers/time)
-   'time/month            #?(:cljs time-literals.data-readers-cljs/month :clj time-literals.data-readers/month)
+   'time/month            #?(:cljs str :clj time-literals.data-readers/month)
    'time/month-day        #?(:cljs time-literals.data-readers-cljs/month-day :clj time-literals.data-readers/month-day)
    'time/duration         #?(:cljs time-literals.data-readers-cljs/duration :clj time-literals.data-readers/duration)
-   'time/year             #?(:cljs time-literals.data-readers-cljs/year :clj time-literals.data-readers/year)
+   'time/year             #?(:cljs str :clj time-literals.data-readers/year)
    'time/year-month       #?(:cljs time-literals.data-readers-cljs/year-month :clj time-literals.data-readers/year-month)
    })
 
