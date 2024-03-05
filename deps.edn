@@ -8,7 +8,7 @@
                        :extra-deps  {com.widdindustries/tiado-cljs2
                                      { ;:local/root "../tiado-cljs2"
                                       :git/url "https://github.com/henryw374/tiado-cljs2.git"
-                                      :sha     "fbd9f3b8df3523ccf11bbc685836ce7f96f18068"}
+                                      :sha     "3229283d825a393008a1f1c408603dff775e87c2"}
                                      cljsjs/js-joda-timezone {:mvn/version "2.2.0-0"}}}
            :test-clj-jsjoda      {:extra-paths ["jsjoda/test"]}
            :test-clj-tempo      {:extra-paths ["tempo/test"]}

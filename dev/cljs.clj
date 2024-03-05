@@ -1,5 +1,6 @@
 (ns cljs
-  (:require [com.widdindustries.tiado-cljs2 :as util]))
+  (:require [clojure.java.io :as io]
+            [com.widdindustries.tiado-cljs2 :as util]))
 
 (defn test-watch []
   (util/browser-test-build :watch {}))
