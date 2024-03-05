@@ -4,7 +4,7 @@
            :jsjoda {:extra-paths   ["jsjoda/src"]
                      :extra-deps    {com.widdindustries/cljs.java-time {:mvn/version "0.1.20"}}}
            :test-cljs-jsjoda {:extra-paths ["jsjoda/test"]}
-           :test-cljs {:extra-paths ["dev " "web-target"]
+           :test-cljs {:extra-paths ["dev" "web-target"]
                        :extra-deps  {com.widdindustries/tiado-cljs2
                                      { ;:local/root "../tiado-cljs2"
                                       :git/url "https://github.com/henryw374/tiado-cljs2.git"
