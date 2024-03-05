@@ -19,7 +19,7 @@
    
     <script>
         if(!window.Temporal){
-          document.write('<script src=\"https://tc39.es/proposal-temporal/docs/playground.js\"></script>');
+          document.write('<script src=\"https://tc39.es/proposal-temporal/docs/playground.js\"><\\/script>');
                   }
     </script>
     
@@ -45,6 +45,7 @@
 
   ; start up live-compilation of tests
   (test-watch)
+  (temporal-test-watch)
   ; run cljs tests, having opened browser at test page (see print output of above "for tests, open...")
   (util/run-tests)
   ; start a cljs repl session in the test build. :cljs/quit to exit

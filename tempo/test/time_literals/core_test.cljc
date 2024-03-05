@@ -34,19 +34,25 @@
             ;:a-day-of-week      #time/day-of-week "TUESDAY"
             }))
 
+#?(:cljs
+   (set! (.-equals js/Temporal.Duration.prototype) (fn [o]
+                                                     (this-as this
+                                                       (zero? (js/Temporal.Duration.compare this o)))))
+   )
+
 (deftest symmetricity-test
   (testing "all can be printed and read"
     (doseq [[n v] all]
       (testing n
         (testing "edn"
-          (is (= v (->> v pr-str (edn/read-string
+          (is (#?(:clj = :cljs .equals) v (->> v pr-str (edn/read-string
                                    {:readers time-literals.read-write/tags})))))
         (testing "native read"
           (let [read-fn #?(:clj read-string :cljs rdr/read-string)]
-            (is (= v (->> v pr-str read-fn)))))
+            (is (#?(:clj = :cljs .equals) v (->> v pr-str read-fn)))))
         (testing "tools.reader"
           (binding [reader/*data-readers* time-literals.read-write/tags]
-            (is (= v (->> v pr-str reader/read-string)))))))))
+            (is (#?(:clj = :cljs .equals) v (->> v pr-str reader/read-string)))))))))
 
 
 (comment
