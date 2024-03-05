@@ -13,7 +13,7 @@ A Clojure(Script) library which provides tagged literals for date-time objects
 There are two artifacts:
 * [![java.time and js-joda](https://img.shields.io/clojars/v/com.widdindustries/time-literals.svg)](https://clojars.org/com.widdindustries/time-literals). on js runtimes the objects are those of a
   java.time clone, called '[js-joda](https://js-joda.github.io/js-joda/)'
-* [![java.time and temporal](https://img.shields.io/clojars/v/com.widdindustries/time-literals-tempo.svg)](https://clojars.org/com.widdindustries/time-literals-tempo) on js-runtimes the objects are from the platform Temporal API
+* [![java.time and temporal](https://img.shields.io/clojars/v/com.widdindustries/time-literals-tempo.svg)](https://clojars.org/com.widdindustries/time-literals-tempo) on js-runtimes the objects are from the platform Temporal API - see [Tempo](https://github.com/henryw374/tempo) lib for more info
   
 [This talk](https://www.youtube.com/watch?v=UFuL-ZDoB2U) provides some more background.
 

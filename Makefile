@@ -13,7 +13,7 @@ deploy-jsjoda:
 test-clj-tempo:
 			clojure -Mtest-clj:test-clj-tempo:tempo -d tempo/test 
 test-cljs-tempo:
-			clojure -Atempo:test-cljs:test-cljs-tempo -X com.widdindustries.tiado-cljs2/tests-ci-shadow :compile-mode :release
+			clojure -Atempo:test-cljs:test-cljs-tempo -X dev/tests-ci-temporal :compile-mode :release
 install-tempo:
 			make clean && clj -T:build jar :artifact "tempo" && clj -T:build install :artifact "tempo" \
 			&& mkdir -p tmp && cd tmp
