@@ -43,17 +43,6 @@
      :cljs (js/Temporal.PlainYearMonth.from x)
      ))
 
-(defn zone [x]
-  #?(:clj
-     (list 'js/Temporal.TimeZone.from x)
-     :cljs (js/Temporal.TimeZone.from x)
-     ))
-
-#_(defn day-of-week [x]
-  #?(:clj
-     (list 'js/Temporal.PlainMonthDay.from x)
-     :cljs (js/Temporal.PlainMonthDay.from x)))
-
 (defn month-day [x]
   #?(:clj
      (list 'js/Temporal.PlainMonthDay.from x)

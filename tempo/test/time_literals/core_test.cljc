@@ -30,7 +30,7 @@
             :a-duration         #time/duration "PT1S"
             ;:a-year             #time/year "3030"
             :a-year-month       #time/year-month "3030-01"
-            :a-zone             #time/zone "Europe/London"
+            ;:a-zone             #time/zone "Europe/London"
             ;:a-day-of-week      #time/day-of-week "TUESDAY"
             }))
 

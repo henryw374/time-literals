@@ -35,9 +35,6 @@
 (defn year-month [x]
   (. YearMonth parse x))
 
-(defn zone [x]
-  (. ZoneId of x))
-
 (defn day-of-week [x]
   (. DayOfWeek valueOf x))
 

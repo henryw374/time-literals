@@ -6,7 +6,7 @@
  ;time/offset-time      #?(:cljs time-literals.data-readers-cljs/offset-time      :clj time-literals.data-readers/offset-time)
  time/instant          #?(:cljs time-literals.data-readers-cljs/instant          :clj time-literals.data-readers/instant)
  ;time/offset-date-time #?(:cljs time-literals.data-readers-cljs/offset-date-time :clj time-literals.data-readers/offset-date-time)
- time/zone             #?(:cljs time-literals.data-readers-cljs/zone             :clj time-literals.data-readers/zone)
+ ;time/zone             #?(:cljs time-literals.data-readers-cljs/zone             :clj time-literals.data-readers/zone)
  ;time/day-of-week      #?(:cljs time-literals.data-readers-cljs/day-of-week      :clj time-literals.data-readers/day-of-week)
  time/time             #?(:cljs time-literals.data-readers-cljs/time             :clj time-literals.data-readers/time)
  ;time/month            #?(:cljs time-literals.data-readers-cljs/month            :clj time-literals.data-readers/month)
