@@ -5,8 +5,8 @@
             [clojure.string :as string]))
 
 (defn lib [artifact]
-  (if (= "tempo" artifact)
-    'com.widdindustries/time-literals-tempo
+  (if (= "temporal" artifact)
+    'com.widdindustries/time-literals-temporal
     'com.widdindustries/time-literals))
 
 (def version (some-> (sh/sh "git" "describe" "--tags" "--abbrev=0")
@@ -17,8 +17,8 @@
 (def class-dir "target/classes")
 
 (defn basis [artifact]
-  (if (= "tempo" artifact) 
-    (b/create-basis {:project "deps.edn" :aliases [:tempo]})
+  (if (= "temporal" artifact) 
+    (b/create-basis {:project "deps.edn" :aliases [:temporal]})
     (b/create-basis {:project "deps.edn" :aliases [:jsjoda]})))
 
 (defn jar-file [lib] (format "target/%s-%s.jar" (name lib) version))

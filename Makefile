@@ -10,15 +10,15 @@ install-jsjoda:
 deploy-jsjoda:
 			clj -T:build deploy :artifact "jsjoda"
 			
-test-clj-tempo:
-			clojure -Mtest-clj:test-clj-tempo:tempo -d tempo/test 
-test-cljs-tempo:
-			clojure -Atempo:test-cljs:test-cljs-tempo -X cljs/tests-ci-temporal :compile-mode :release
-install-tempo:
-			make clean && clj -T:build jar :artifact "tempo" && clj -T:build install :artifact "tempo" \
+test-clj-temporal:
+			clojure -Mtest-clj:test-clj-temporal:temporal -d temporal/test 
+test-cljs-temporal:
+			clojure -Atemporal:test-cljs:test-cljs-temporal -X cljs/tests-ci-temporal :compile-mode :release
+install-temporal:
+			make clean && clj -T:build jar :artifact "temporal" && clj -T:build install :artifact "temporal" \
 			&& mkdir -p tmp && cd tmp
-deploy-tempo:
-			clj -T:build deploy :artifact "tempo"			
+deploy-temporal:
+			clj -T:build deploy :artifact "temporal"			
 
 
 

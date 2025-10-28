@@ -29,8 +29,8 @@ jobs:
       - name: Run Cljs Unit tests (jsjoda)
         run: make test-cljs-jsjoda
           
-      - name: Run Clj Unit tests (tempo)
-        run: make test-clj-tempo
+      - name: Run Clj Unit tests (temporal)
+        run: make test-clj-temporal
 
-      - name: Run Cljs Unit tests (tempo)
-        run: make test-cljs-tempo          
+      - name: Run Cljs Unit tests (temporal)
+        run: make test-cljs-temporal          
