@@ -7,7 +7,7 @@
     </organization>
     <description>A Clojure(Script) library which provides tagged literals for java.time and Temporal objects,
         on the JVM and JS runtimes respectively.</description>
-    <url>https://github.com/henryw374/time-literals-tempo</url>
+    <url>https://github.com/henryw374/time-literals</url>
     <licenses>
         <license>
             <url>http://opensource.org/licenses/MIT</url>

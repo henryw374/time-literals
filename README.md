@@ -13,7 +13,7 @@ A Clojure(Script) library which provides tagged literals for date-time objects
 There are two artifacts:
 * [![java.time and js-joda](https://img.shields.io/clojars/v/com.widdindustries/time-literals.svg)](https://clojars.org/com.widdindustries/time-literals). on js runtimes the objects are those of a
   java.time clone, called '[js-joda](https://js-joda.github.io/js-joda/)'
-* [![java.time and temporal](https://img.shields.io/clojars/v/com.widdindustries/time-literals-tempo.svg)](https://clojars.org/com.widdindustries/time-literals-tempo) on js-runtimes the objects are from the platform Temporal API - see [Tempo](https://github.com/henryw374/tempo) lib for more info
+* [![java.time and temporal](https://img.shields.io/clojars/v/com.widdindustries/time-literals-temporal.svg)](https://clojars.org/com.widdindustries/time-literals-tempo) on js-runtimes the objects are from the platform Temporal API - see [Chronos](https://github.com/henryw374/chronos) lib for a cross-platform date-time library based on java.time and Temporal.
   
 [This talk](https://www.youtube.com/watch?v=UFuL-ZDoB2U) provides some more background.
 
@@ -54,6 +54,8 @@ The default readers and printers of platform date objects don't allow round-trip
 This is relevant to the java.time types which logically correspond to `#inst` (java.time.Instant and java.time.OffsetDateTime). This library contains specific readers and printers for those objects so that they do round-trip. When conveying these objects out of process in edn format, they should be tagged as `#inst` of course. To do that, simply provide your own implementation of `clojure.core/print-method` for those types. With `*print-dup*` true, the concrete type will still show.
 
 ## Related Libraries
+
+[Chronos](https://github.com/henryw374/chronos) is a cross-platform date-time library based on java.time and Temporal.
 
 [cljc.java-time](https://github.com/henryw374/cljc.java-time) is a one for one mapping of the classes and methods from
 java.time into a Clojure(Script) library 
