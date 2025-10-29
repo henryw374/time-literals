@@ -159,8 +159,8 @@ in this library (`time-literals`) follows the [tick](https://clojars.org/tick) c
 
 TL;DR it is sufficiently ambiguous.
 
-This library reads/writes java.time objects. It would be feasible to use the same set of tags with a different 
-time library, either on the jvm or other elsewhere. If the namespace were 'jsr310' or 'java.time' that would be
+This library reads/writes objects from java.time, js-joda and Temporal. It would be feasible to use the same set of tags with different 
+time libraries, either on the jvm or other elsewhere. If the namespace were 'jsr310' or 'java.time' that would be
 too implementaion specific.
 
 A set of literals for the ISO-8601 specification would 
@@ -172,6 +172,6 @@ the IANA time zone names (such are you see in the literal representation of Zone
 
 ## License
 
-Copyright © 2021 [Widd Industries](https://widdindustries.com/about/)
+Copyright © 2025 [Widd Industries](https://widdindustries.com/about/)
 
 Distributed under the [MIT License](/LICENSE)
