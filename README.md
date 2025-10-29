@@ -68,29 +68,24 @@ The [tick](https://clojars.org/tick) library is an intuitive Clojure(Script) lib
 
 Note: IMHO one should avoid putting tag literals in source code because a tag can be bound to different readers in different contexts, but code will be expecting some specific API. Additionally one has to add a side-effecting require of the tag-reader-namespace to make sure the reader function (ie the one you hope is bound to the tag) exists. tl;dr - it is too magical.
 
-The library includes the magic file `data_readers.cljc` which Clojure and the Clojurescript
-compilers will look for.
+The library includes the magic file `data_readers.cljc` which Clojure and the Clojurescript compilers will look for.
 
-In order to modify the printer to print these literals, run: 
-
-`(time-literals.read-write/print-time-literals-clj!)`
-
-`(time-literals.read-write/print-time-literals-cljs!)`
-
-Example literals:
+Supported literals:
 
 ```
-#time/month "JUNE"
-#time/period "P1D"
 #time/date "2039-01-01"
 #time/date-time "2018-07-25T08:08:44.026"
 #time/zoned-date-time "2018-07-25T08:09:11.227+01:00[Europe/London]"
-#time/offset-date-time "2018-07-25T08:11:54.453+01:00"
 #time/instant "2018-07-25T07:10:05.861Z"
 #time/time "08:12:13.366"
-#time/duration "PT1S"
-#time/year "3030"
 #time/year-month "3030-01"
+#time/duration "PT1S"
+
+; the following are only available in the java.time/js-joda version
+#time/month "JUNE"
+#time/period "P1D"
+#time/offset-date-time "2018-07-25T08:11:54.453+01:00"
+#time/year "3030"
 #time/zone "Europe/London"
 #time/day-of-week "TUESDAY"
 ```
